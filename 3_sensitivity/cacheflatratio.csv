@@ -22,12 +22,15 @@ Benchmark,Cache25% Flat75% Hitrate,Cache50% Flat50% Hitrate,Cache75% Flat25% Hit
 549.fotonik3d_r,0.835308,0.772445,0.766805,1.20339,1.098259,1.098684
 554.roms_r,,,,,,
 557.xz_r,,,,,,
-Mix1=8high,,,,,,
-Mix2=6high+2medium,,,,,,
-Mix3=4h4m,,,,,,
-Mix4=2h6m,,,,,,
+mix1,,,,,,
+mix2,,,,,,
+mix3,,,,,,
+mix4,,,,,,
 PageRank.ljournal,,,,,,
 Bellmanford.ljournal,,,,,,
 Freqmine,,,,,,
 Dedup,,,,,,
 Fluidaminate,,,,,,
+Low MPKI Geomean,0.669295,0.669731,0.671349,1,1.005062452,1.005274476
+Medium MPKI Geomean,0.908667,0.903615,0.902636,1,0.981902525,0.978528798
+High MPKI Geomean,0.835308,0.772445,0.766805,1,0.912637632,0.912990801

@@ -22,12 +22,15 @@ Benchmark,Hybrid2 Hitrate,Baryon Hitrate
 549.fotonik3d_r,0.74,0.84
 554.roms_r,0.91,0.92
 557.xz_r,0.7,0.77
-Mix1=8high,0.86,0.92
-Mix2=6high+2medium,0.86,0.92
-Mix3=4h4m,0.86,0.91
-Mix4=2h6m,0.87,0.91
+mix1,0.86,0.92
+mix2,0.86,0.92
+mix3,0.86,0.91
+mix4,0.87,0.91
 PageRank.ljournal,0.869069863,0.891088501
 Bellmanford.ljournal,0.478820881,0.482893554
 Freqmine,0.9678,0.9735
 Dedup,0.815,0.8399
 Fluidaminate,0.931,0.9576
+Low MPKI Geomean,0.66,0.68
+Medium MPKI Geomean,0.55,0.58
+High MPKI Geomean,0.83,0.89
