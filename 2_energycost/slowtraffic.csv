@@ -21,6 +21,18 @@ Benchmark,Hybrid2,Baryon,Normalized Traffic
 549.fotonik3d_r,65522017,36269401,0.553545246
 554.roms_r,105197943,94312322,0.896522492
 557.xz_r,124481299,96257177,0.773266167
+mix1,,,
+mix2,,,
+mix3,,,
+mix4,,,
+PageRank.ljournal,,,
+Bellmanford.ljournal,,,
+Freqmine,,,
+Dedup,,,
+Fluidaminate,,,
+Blackscholes,,,
+Raytrace,,,
+Canenal,,,
 Low MPKI Geomean,,,0.53734179
 Medium MPKI Geomean,,,0.620616606
 High MPKI Geomean,,,0.558075919
