@@ -3,14 +3,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 import easypyplot
 import pandas as pd
+low_wl = ['503', '508', '521', '523', '525', '526', '531', '544', 'Bellmanford', 'Freqmine', 'Fluidaminate', 'Blackscholes']
+medium_wl = ['507', '510', 'Raytrace', 'Dedup']
+high_wl = ['502', '505', '519', '520', '549', '554', '557', 'PageRank', 'Canneal']
+mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 # %%
 # graph_hitrate
 # prepare ordered workload list
 hitrate_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/1_performance/hitrate.csv')
-low_wl = ['503', '508', '521', '523', '525', '526', '531', '544']
-medium_wl = ['507', '510']
-high_wl = ['502', '505', '519', '520', '549', '554', '557']
-mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 hitrate_2darr = []
 wl_list = []
 for idx, workload in hitrate_csv.iterrows():
@@ -37,6 +37,8 @@ for idx, workload in hitrate_csv.tail(3).iterrows():
     wl_list.append(workload['Benchmark'])
     hitrate_2darr.append([workload['Hybrid2 Hitrate'], workload['Baryon Hitrate']])
 
+print(wl_list)
+    
 group_name = ['Hybrid2', 'Baryon']
 fig_dims = (10, 2.5)
 fig_name = '{}'.format("graph_hitrate")
@@ -86,7 +88,7 @@ for idx, case in enumerate(wl_list):
 #         x += 0.05 # a little offset
 #         hitrate_text = str(hitrate)[0:5]
 #         ax.text(x, hitrate, hitrate_text, ha='center', va='top', fontsize=8, rotation=90)
-
+    
 # Create legend
 ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.2), loc='upper left', ncol=2)
 

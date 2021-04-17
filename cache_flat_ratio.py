@@ -3,17 +3,24 @@ import numpy as np
 import matplotlib.pyplot as plt
 import easypyplot
 import pandas as pd
+low_wl = ['503', '508', '521', '523', '525', '526', '531', '544', 'Bellmanford', 'Freqmine', 'Fluidaminate', 'Blackscholes']
+medium_wl = ['507', '510', 'Raytrace', 'Dedup']
+high_wl = ['502', '505', '519', '520', '549', '554', '557', 'PageRank', 'Canneal']
+mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 
 # cache_flat_ratio
 # prepare ordered workload list
 cache_flat_ratio_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/3_sensitivity/cacheflatratio.csv')
-low_wl = ['503', '508', '521', '523', '525', '526', '531', '544']
-medium_wl = ['507', '510']
-high_wl = ['502', '505', '519', '520', '549', '554', '557']
-mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 cache_flat_ratio_2darr = []
 hitrate_2darr = []
 wl_list = []
+# TODO: if we want to show the result of mix
+# for idx, workload in cache_flat_ratio_csv.iterrows():
+#     wl_name = workload['Benchmark']
+#     if any(mix_id in wl_name for mix_id in mix_wl):
+#         wl_list.append(wl_name)
+#         cache_flat_ratio_2darr.append([workload['Cache25% Flat75% Speedup_over_hybrid2'], workload['Cache50% Flat50% Speedup_over_hybrid2'], workload['Cache75% Flat25% Speedup_over_hybrid2']])
+#         hitrate_2darr.append([workload['Cache25% Flat75% Hitrate'], workload['Cache50% Flat50% Hitrate'], workload['Cache75% Flat25% Hitrate']])
 for idx, workload in cache_flat_ratio_csv.tail(3).iterrows():
     wl_list.append(workload['Benchmark'])
     cache_flat_ratio_2darr.append([workload['Cache25% Flat75% Speedup_over_hybrid2'], workload['Cache50% Flat50% Speedup_over_hybrid2'], workload['Cache75% Flat25% Speedup_over_hybrid2']])
@@ -33,6 +40,7 @@ all_xticks = []
 xtick_beg = 0
 color_item = [easypyplot.color.COLOR_SET[i] for i in [1, 5, 6]]
 hdls = []
+bar_width = 0.7
 for idx, cache_flat_ratio in enumerate(cache_flat_ratio_2darr):
     group_xticks.append(xtick_beg)
     xticks = list(np.arange(xtick_beg, xtick_beg+len(cache_flat_ratio_2darr) * bar_width / 3, bar_width / 3) - bar_width / 3)
@@ -41,7 +49,6 @@ for idx, cache_flat_ratio in enumerate(cache_flat_ratio_2darr):
     if idx == len(wl_list) - 4:
         xtick_beg += 0.5 # gap for geomean items
 
-bar_width = 0.7
 hdls = easypyplot.barchart.draw(ax, cache_flat_ratio_2darr, width=bar_width, breakdown=False, xticks=group_xticks, group_names=wl_list, colors=color_item)
 ax.set_xticklabels([], fontsize=8)
 ax.set_xlim([ax.get_xticks()[0] - 1, ax.get_xticks()[-1] + 1])

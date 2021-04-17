@@ -3,17 +3,24 @@ import numpy as np
 import matplotlib.pyplot as plt
 import easypyplot
 import pandas as pd
+low_wl = ['503', '508', '521', '523', '525', '526', '531', '544', 'Bellmanford', 'Freqmine', 'Fluidaminate', 'Blackscholes']
+medium_wl = ['507', '510', 'Raytrace', 'Dedup']
+high_wl = ['502', '505', '519', '520', '549', '554', '557', 'PageRank', 'Canneal']
+mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 
 # fastmem capacity
 # prepare ordered workload list
 fastmem_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/3_sensitivity/fastmemcapacity.csv')
-low_wl = ['503', '508', '521', '523', '525', '526', '531', '544']
-medium_wl = ['507', '510']
-high_wl = ['502', '505', '519', '520', '549', '554', '557']
-mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 fastmem_2darr = []
 hitrate_2darr = []
 wl_list = []
+# TODO: if we want to show the result of mix
+# for idx, workload in fastmem_csv.iterrows():
+#     wl_name = workload['Benchmark']
+#     if any(mix_id in wl_name for mix_id in mix_wl):
+#         wl_list.append(wl_name)
+#         fastmem_2darr.append([workload['1GB Speedup'], workload['2GB Speedup'], workload['4GB Speedup']])
+#         hitrate_2darr.append([workload['1GB Hitrate'], workload['2GB Hitrate'], workload['4GB Hitrate']])
 for idx, workload in fastmem_csv.tail(3).iterrows():
     wl_list.append(workload['Benchmark'])
     fastmem_2darr.append([workload['1GB Speedup'], workload['2GB Speedup'], workload['4GB Speedup']])
@@ -34,6 +41,7 @@ all_xticks = []
 xtick_beg = 0
 color_item = [easypyplot.color.COLOR_SET[i] for i in [1, 5, 6]]
 hdls = []
+bar_width = 0.7
 for idx, fastmem in enumerate(fastmem_2darr):
     group_xticks.append(xtick_beg)
     xticks = list(np.arange(xtick_beg, xtick_beg+len(fastmem_2darr) * bar_width / 3, bar_width / 3) - bar_width / 3)
@@ -42,7 +50,6 @@ for idx, fastmem in enumerate(fastmem_2darr):
     if idx == len(wl_list) - 4:
         xtick_beg += 0.5 # gap for geomean items
 
-bar_width = 0.7
 hdls = easypyplot.barchart.draw(ax, fastmem_2darr, width=bar_width, breakdown=False, xticks=group_xticks, group_names=wl_list, colors=color_item)
 ax.set_xticklabels([], fontsize=8)
 ax.set_xlim([ax.get_xticks()[0] - 1, ax.get_xticks()[-1] + 1])
@@ -58,7 +65,7 @@ tick_x_list = []
 for group_id in range(len(fastmem_2darr)):
     for entry_id in range(3):
         fastmem = fastmem_2darr[group_id][entry_id]
-        x = ax.get_xticks()[group_id] + entry_id * bar_width / len(entry_list) - bar_width / len(entry_list)
+        x = ax.get_xticks()[group_id] + entry_id * bar_width / len(wl_list) - bar_width / len(wl_list)
         tick_x_list.append(x)
         x += 0.03 # a little offset
         fastmem_text = "%.03f" % fastmem

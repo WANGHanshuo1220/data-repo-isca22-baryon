@@ -3,16 +3,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 import easypyplot
 import pandas as pd
+low_wl = ['503', '508', '521', '523', '525', '526', '531', '544', 'Bellmanford', 'Freqmine', 'Fluidaminate', 'Blackscholes']
+medium_wl = ['507', '510', 'Raytrace', 'Dedup']
+high_wl = ['502', '505', '519', '520', '549', '554', '557', 'PageRank', 'Canneal']
+mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 
 # slowtraffic
 # prepare ordered workload list
 slowtraffic_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/2_energycost/slowtraffic.csv')
-low_wl = ['503', '508', '521', '523', '525', '526', '531', '544']
-medium_wl = ['507', '510']
-high_wl = ['502', '505', '519', '520', '549', '554', '557']
-mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 slowtraffic_2darr = []
 wl_list = []
+# for idx, workload in slowtraffic_csv.iterrows():
+#     wl_name = workload['Benchmark']
+#     if any(mix_id in wl_name for mix_id in mix_wl):
+#         wl_list.append(wl_name)
+#         slowtraffic_2darr.append([1, workload['Normalized Traffic']])
 for idx, workload in slowtraffic_csv.tail(3).iterrows():
     wl_list.append(workload['Benchmark'])
     slowtraffic_2darr.append([1, workload['Normalized Traffic']])
@@ -23,7 +28,7 @@ fig_dims = (5, 2.5)
 fig_name = '{}'.format("graph_slow_traffic")
 pp, fig = easypyplot.pdf.plot_setup(fig_name, fig_dims)
 ax = fig.gca()
-easypyplot.format.turn_off_box(ax, twinx_axes=ax2)
+easypyplot.format.turn_off_box(ax)
 
 # x ticks
 group_xticks = []
@@ -31,6 +36,7 @@ all_xticks = []
 xtick_beg = 0
 color_item = [easypyplot.color.COLOR_SET[i] for i in [0, 1]]
 hdls = []
+bar_width = 0.6
 for idx, slowtraffic in enumerate(slowtraffic_2darr):
     group_xticks.append(xtick_beg)
     xticks = list(np.arange(xtick_beg, xtick_beg+len(slowtraffic_2darr) * bar_width, bar_width))
@@ -39,7 +45,6 @@ for idx, slowtraffic in enumerate(slowtraffic_2darr):
     if idx == len(wl_list) - 4:
         xtick_beg += 0.5 # gap for geomean items
 
-bar_width = 0.6
 hdls = easypyplot.barchart.draw(ax, slowtraffic_2darr, width=bar_width, breakdown=False, xticks=group_xticks, group_names=wl_list, colors=color_item)
 ax.set_xticklabels([], fontsize=8)
 ax.set_xlim([ax.get_xticks()[0] - 1, ax.get_xticks()[-1] + 1])
