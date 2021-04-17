@@ -34,6 +34,5 @@ Fluidaminate,0.931,0.9576
 Blackscholes,0.9908,0.9909
 Raytrace,0.9135,0.9215
 Canneal,0.8173,0.8439
-Low MPKI Geomean,0.71,0.72
-Medium MPKI Geomean,0.63,0.65
-High MPKI Geomean,0.83,0.89
+Memory Insensitive Group,0.74,0.75
+Memory Intensive Group,0.82,0.87
