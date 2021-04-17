@@ -3,9 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import easypyplot
 import pandas as pd
-low_wl = ['503', '508', '521', '523', '525', '526', '531', '544', 'Bellmanford', 'Freqmine', 'Fluidaminate', 'Blackscholes']
+low_wl = ['503', '508', '521', '523', '525', '526', '531', '544', 'Freqmine', 'Fluidaminate', 'Blackscholes']
 medium_wl = ['507', '510', 'Raytrace', 'Dedup']
-high_wl = ['502', '505', '519', '520', '549', '554', '557']
+high_wl = ['502', '505', '519', '520', '549', '554', '557', 'Canneal']
 mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 
 # speedup
