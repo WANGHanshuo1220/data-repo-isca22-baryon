@@ -9,7 +9,7 @@ mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 
 # mpki
 # prepare ordered workload list
-mpki_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/1_performance/mpki.csv')
+mpki_csv = pd.read_csv('./1_performance/mpki.csv')
 mpki_2darr = []
 wl_list = []
 for idx, workload in mpki_csv.iterrows():
@@ -41,7 +41,7 @@ easypyplot.format.turn_off_box(ax)
 # x ticks
 group_xticks = []
 xtick_beg = 0
-color_item = [easypyplot.color.COLOR_SET[i] for i in [0, 1]]
+color_item = [easypyplot.color.COLOR_SET[i] for i in [3, 0]]
 hdls = []
 for idx, mpki in enumerate(mpki_2darr):
     group_xticks.append(xtick_beg)
@@ -59,7 +59,7 @@ ax.xaxis.set_ticks_position('none')
 
 # y axis
 ax.yaxis.grid(True)
-ax.set_ylabel('Normalized MPKI')
+ax.set_ylabel('Normalized Fast Memory MPKI')
 ax.set_ylim([0, 1.5])
 
 fig.tight_layout()
@@ -69,7 +69,7 @@ easypyplot.format.resize_ax_box(ax, hratio=0.77)
 name_y_pos = -0.05
 for idx, case in enumerate(wl_list):
     x = ax.get_xticks()[idx]
-    ax.text(x, name_y_pos, case, ha='center', va='top', fontsize=9, rotation=90)
+    ax.text(x, name_y_pos, case, ha='right', va='top', fontsize=9, rotation=30)
 
 # mpki text
 # for group_id in range(len(wl_list)):
@@ -84,7 +84,6 @@ for idx, case in enumerate(wl_list):
 #         ax.text(x, mpki, mpki_text, ha='center', va='top', fontsize=8, rotation=90)
     
 # Create legend
-ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.2), loc='upper left', ncol=2)
+ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.1), loc='upper left', ncol=2)
 
-fig.savefig(fig_name+'.pdf',format="pdf", bbox_inches = 'tight')
-# easypyplot.pdf.plot_teardown(pp)
+easypyplot.pdf.plot_teardown(pp)
