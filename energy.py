@@ -17,9 +17,9 @@ for idx, workload in energy_csv.iterrows():
     wl_name = workload['Benchmark']
     if any(mix_id in wl_name for mix_id in mix_wl):
         wl_list.append(wl_name)
-        energy_2darr.append([1, workload['Normalized fastEnergy'], 1, workload['Normalized slowEnergy']])
+        energy_2darr.append([1, workload['Normalized Energy']])
 
-group_name = ['Hybrid2 Fast Memory', 'Baryon Fast Memory', 'Hybrid2 Slow Memory', 'Baryon Slow Memory']
+group_name = ['Hybrid2', 'Baryon']
 fig_dims = (5, 2.5)
 fig_name = '{}'.format("graph_energy")
 pp, fig = easypyplot.pdf.plot_setup(fig_name, fig_dims)
