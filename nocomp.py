@@ -7,20 +7,20 @@ low_wl = ['503', '508', '521', '523', '525', '526', '531', '544', 'Bellmanford',
 high_wl = ['502', '505', '519', '520', '549', '554', '557', 'PageRank', 'Canneal']
 mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 
-# only intra evict
+# nocomp speedup
 # prepare ordered workload list
-energy_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/3_sensitivity/onlyintraevict.csv')
+energy_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/1_performance/speedup.csv')
 energy_2darr = []
 wl_list = []
 for idx, workload in energy_csv.iterrows():
     wl_name = workload['Benchmark']
     if any(mix_id in wl_name for mix_id in mix_wl):
         wl_list.append(wl_name)
-        energy_2darr.append([1, workload['Slowdown']])
+        energy_2darr.append([1, workload['Nocomp Speedup'], workload['Baryon Speedup']])
 
-group_name = ['Baryon', 'Baryon w/o Block-level Replacement']
+group_name = ['Hybrid2', 'Nocomp', 'Baryon']
 fig_dims = (5, 2.5)
-fig_name = '{}'.format("graph_onlyintraevict")
+fig_name = '{}'.format("graph_nocomp")
 pp, fig = easypyplot.pdf.plot_setup(fig_name, fig_dims)
 ax = fig.gca()
 easypyplot.format.turn_off_box(ax)
@@ -28,7 +28,7 @@ easypyplot.format.turn_off_box(ax)
 # x ticks
 group_xticks = []
 xtick_beg = 0
-color_item = [easypyplot.color.COLOR_SET[i] for i in [0, 1, 2, 3]]
+color_item = [easypyplot.color.COLOR_SET[i] for i in [1, 0, 2]]
 hdls = []
 for idx, energy in enumerate(energy_2darr):
     group_xticks.append(xtick_beg)
@@ -42,7 +42,7 @@ ax.xaxis.set_ticks_position('none')
 # y axis
 ax.yaxis.grid(True)
 ax.set_ylabel('Normalized Slowdown')
-ax.set_ylim([0.5, 1])
+ax.set_ylim([0.8, 1.25])
 
 fig.tight_layout()
 easypyplot.format.resize_ax_box(ax, hratio=0.77)
@@ -66,7 +66,7 @@ for idx, case in enumerate(wl_list):
 #         ax.text(x, energy, energy_text, ha='center', va='top', fontsize=8, rotation=90)
     
 # Create legend
-ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.3), loc='upper left', ncol=2)
+ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.2), loc='upper left', ncol=4)
 
 fig.savefig(fig_name+'.pdf',format="pdf", bbox_inches = 'tight')
 # easypyplot.pdf.plot_teardown(pp)
