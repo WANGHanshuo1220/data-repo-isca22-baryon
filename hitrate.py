@@ -20,11 +20,6 @@ for idx, workload in hitrate_csv.iterrows():
         hitrate_2darr.append([workload['Hybrid2 Hitrate'], workload['Baryon Hitrate']])
 for idx, workload in hitrate_csv.iterrows():
     wl_name = workload['Benchmark']
-    if any(medium_id in wl_name for medium_id in medium_wl):
-        wl_list.append(wl_name)
-        hitrate_2darr.append([workload['Hybrid2 Hitrate'], workload['Baryon Hitrate']])
-for idx, workload in hitrate_csv.iterrows():
-    wl_name = workload['Benchmark']
     if any(high_id in wl_name for high_id in high_wl):
         wl_list.append(wl_name)
         hitrate_2darr.append([workload['Hybrid2 Hitrate'], workload['Baryon Hitrate']])
@@ -33,7 +28,7 @@ for idx, workload in hitrate_csv.iterrows():
     if any(mix_id in wl_name for mix_id in mix_wl):
         wl_list.append(wl_name)
         hitrate_2darr.append([workload['Hybrid2 Hitrate'], workload['Baryon Hitrate']])
-for idx, workload in hitrate_csv.tail(3).iterrows():
+for idx, workload in hitrate_csv.tail(2).iterrows():
     wl_list.append(workload['Benchmark'])
     hitrate_2darr.append([workload['Hybrid2 Hitrate'], workload['Baryon Hitrate']])
 
@@ -54,7 +49,9 @@ hdls = []
 for idx, hitrate in enumerate(hitrate_2darr):
     group_xticks.append(xtick_beg)
     xtick_beg += 1
-    if idx == len(wl_list) - 4:
+    if idx == len(low_wl) - 1:
+        xtick_beg += 0.5 # gap between categories
+    if idx == len(wl_list) - 3:
         xtick_beg += 0.5 # gap for geomean items
 
 bar_width = 0.7
@@ -68,7 +65,7 @@ ax.yaxis.grid(True)
 ax.set_ylabel('Fast Memory Serve Rate')
 ax.set_ylim([0, 1.0])
 
-plt.tight_layout()
+fig.tight_layout()
 easypyplot.format.resize_ax_box(ax, hratio=0.77)
 
 # workload text
@@ -92,4 +89,5 @@ for idx, case in enumerate(wl_list):
 # Create legend
 ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.2), loc='upper left', ncol=2)
 
-easypyplot.pdf.plot_teardown(pp)
+fig.savefig(fig_name+'.pdf',format="pdf", bbox_inches = 'tight')
+# easypyplot.pdf.plot_teardown(pp)
