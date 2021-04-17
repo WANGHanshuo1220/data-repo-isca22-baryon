@@ -10,7 +10,7 @@ mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 
 # fastmem capacity
 # prepare ordered workload list
-fastmem_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/3_sensitivity/fastmemcapacity.csv')
+fastmem_csv = pd.read_csv('./3_sensitivity/fastmemcapacity.csv')
 fastmem_2darr = []
 hitrate_2darr = []
 wl_list = []

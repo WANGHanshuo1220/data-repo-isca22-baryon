@@ -10,7 +10,7 @@ mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 
 # reduced energy
 # prepare ordered workload list
-energy_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/2_energycost/energy.csv')
+energy_csv = pd.read_csv('./2_energycost/energy.csv')
 energy_2darr = []
 wl_list = []
 for idx, workload in energy_csv.iterrows():
@@ -20,7 +20,7 @@ for idx, workload in energy_csv.iterrows():
         energy_2darr.append([1, workload['Normalized Energy']])
 
 group_name = ['Hybrid2', 'Baryon']
-fig_dims = (5, 2.5)
+fig_dims = (5, 2)
 fig_name = '{}'.format("graph_energy")
 pp, fig = easypyplot.pdf.plot_setup(fig_name, fig_dims)
 ax = fig.gca()
@@ -42,17 +42,17 @@ ax.set_xlim([ax.get_xticks()[0] - 1, ax.get_xticks()[-1] + 1])
 ax.xaxis.set_ticks_position('none')
 # y axis
 ax.yaxis.grid(True)
-ax.set_ylabel('Normalized Energy')
-ax.set_ylim([0, 1])
+ax.set_ylabel('Normalized Memory Energy')
+ax.set_ylim([0, 1.2])
 
 fig.tight_layout()
-easypyplot.format.resize_ax_box(ax, hratio=0.77)
+easypyplot.format.resize_ax_box(ax, hratio=0.9)
 
 # workload text
-name_y_pos = -0.05
+name_y_pos = -0.08
 for idx, case in enumerate(wl_list):
     x = ax.get_xticks()[idx]
-    ax.text(x, name_y_pos, case, ha='center', va='top', fontsize=9, rotation=90)
+    ax.text(x, name_y_pos, case, ha='center', va='top', fontsize=9, rotation=0)
 
 # energy text
 # for group_id in range(len(wl_list)):
@@ -67,7 +67,6 @@ for idx, case in enumerate(wl_list):
 #         ax.text(x, energy, energy_text, ha='center', va='top', fontsize=8, rotation=90)
     
 # Create legend
-ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.3), loc='upper left', ncol=2)
+ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.05), loc='upper left', ncol=2)
 
-fig.savefig(fig_name+'.pdf',format="pdf", bbox_inches = 'tight')
-# easypyplot.pdf.plot_teardown(pp)
+easypyplot.pdf.plot_teardown(pp)

@@ -10,7 +10,7 @@ mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 
 # superblock scope
 # prepare ordered workload list
-mpki_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/3_sensitivity/superblksize.csv')
+mpki_csv = pd.read_csv('./3_sensitivity/superblksize.csv')
 mpki_2darr = []
 wl_list = []
 for idx, workload in mpki_csv.iterrows():
@@ -20,7 +20,7 @@ for idx, workload in mpki_csv.iterrows():
         mpki_2darr.append([workload['4 Slowdown'], 1, workload['16 Slowdown']])
 
 group_name = ['4 Blocks', '8 Blocks', '16 Blocks']
-fig_dims = (5, 2.5)
+fig_dims = (5, 1.8)
 fig_name = '{}'.format("graph_superblksize")
 pp, fig = easypyplot.pdf.plot_setup(fig_name, fig_dims)
 ax = fig.gca()
@@ -42,17 +42,17 @@ ax.set_xlim([ax.get_xticks()[0] - 1, ax.get_xticks()[-1] + 1])
 ax.xaxis.set_ticks_position('none')
 # y axis
 ax.yaxis.grid(True)
-ax.set_ylabel('Normalized Speedup')
-ax.set_ylim([0.9, 1.1])
+ax.set_ylabel('Normalized Performance')
+ax.set_ylim([0.9, 1.05])
 
 fig.tight_layout()
-easypyplot.format.resize_ax_box(ax, hratio=0.77)
+easypyplot.format.resize_ax_box(ax, hratio=0.9)
 
 # workload text
-name_y_pos = 0.85
+name_y_pos = 0.885
 for idx, case in enumerate(wl_list):
     x = ax.get_xticks()[idx]
-    ax.text(x, name_y_pos, case, ha='center', va='top', fontsize=9, rotation=90)
+    ax.text(x, name_y_pos, case, ha='center', va='top', fontsize=9, rotation=0)
 
 # mpki text
 # for group_id in range(len(wl_list)):
@@ -67,7 +67,6 @@ for idx, case in enumerate(wl_list):
 #         ax.text(x, mpki, mpki_text, ha='center', va='top', fontsize=8, rotation=90)
     
 # Create legend
-ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.2), loc='upper left', ncol=3)
+ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.05), loc='upper left', ncol=3)
 
-fig.savefig(fig_name+'.pdf',format="pdf", bbox_inches = 'tight')
-# easypyplot.pdf.plot_teardown(pp)
+easypyplot.pdf.plot_teardown(pp)

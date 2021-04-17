@@ -9,7 +9,7 @@ mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 
 # sample addr set size
 # prepare ordered workload list
-energy_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/3_sensitivity/samplesetsize.csv')
+energy_csv = pd.read_csv('./3_sensitivity/samplesetsize.csv')
 energy_2darr = []
 wl_list = []
 for idx, workload in energy_csv.iterrows():
@@ -19,7 +19,7 @@ for idx, workload in energy_csv.iterrows():
         energy_2darr.append([workload['16 Slowdown'], workload['256 Slowdown'], workload['1K Slowdown'], workload['4K Slowdown']])
 
 group_name = ['16-entry', '256-entry', '1k-entry', '4k-entry']
-fig_dims = (5, 2.5)
+fig_dims = (5, 1.8)
 fig_name = '{}'.format("graph_samplesetsize")
 pp, fig = easypyplot.pdf.plot_setup(fig_name, fig_dims)
 ax = fig.gca()
@@ -41,17 +41,17 @@ ax.set_xlim([ax.get_xticks()[0] - 1, ax.get_xticks()[-1] + 1])
 ax.xaxis.set_ticks_position('none')
 # y axis
 ax.yaxis.grid(True)
-ax.set_ylabel('Normalized Slowdown')
-ax.set_ylim([0.5, 1])
+ax.set_ylabel('Normalized Performance')
+ax.set_ylim([0.5, 1.2])
 
 fig.tight_layout()
-easypyplot.format.resize_ax_box(ax, hratio=0.77)
+easypyplot.format.resize_ax_box(ax, hratio=0.9)
 
 # workload text
 name_y_pos = ax.get_ylim()[0] - 0.05
 for idx, case in enumerate(wl_list):
     x = ax.get_xticks()[idx]
-    ax.text(x, name_y_pos, case, ha='center', va='top', fontsize=9, rotation=90)
+    ax.text(x, name_y_pos, case, ha='center', va='top', fontsize=9, rotation=0)
 
 # energy text
 # for group_id in range(len(wl_list)):
@@ -66,7 +66,6 @@ for idx, case in enumerate(wl_list):
 #         ax.text(x, energy, energy_text, ha='center', va='top', fontsize=8, rotation=90)
     
 # Create legend
-ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.2), loc='upper left', ncol=4)
+ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.1), loc='upper left', ncol=4)
 
-fig.savefig(fig_name+'.pdf',format="pdf", bbox_inches = 'tight')
-# easypyplot.pdf.plot_teardown(pp)
+easypyplot.pdf.plot_teardown(pp)
