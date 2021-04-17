@@ -7,20 +7,20 @@ low_wl = ['503', '508', '521', '523', '525', '526', '531', '544', 'Bellmanford',
 high_wl = ['502', '505', '519', '520', '549', '554', '557', 'PageRank', 'Canneal']
 mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 
-# sample addr set size
+# stage cache access
 # prepare ordered workload list
-energy_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/3_sensitivity/samplesetsize.csv')
+energy_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/3_sensitivity/stagecache.csv')
 energy_2darr = []
 wl_list = []
 for idx, workload in energy_csv.iterrows():
     wl_name = workload['Benchmark']
     if any(mix_id in wl_name for mix_id in mix_wl):
         wl_list.append(wl_name)
-        energy_2darr.append([workload['16 Slowdown'], workload['256 Slowdown'], workload['1K Slowdown'], workload['4K Slowdown']])
+        energy_2darr.append([workload['StageCacheHitrate'], workload['StageCacheMultiHitrate']])
 
-group_name = ['16-entry', '256-entry', '1k-entry', '4k-entry']
+group_name = ['Stage Cache Hitrate', 'Stage Cache Multiple Hitrate']
 fig_dims = (5, 2.5)
-fig_name = '{}'.format("graph_samplesetsize")
+fig_name = '{}'.format("graph_stagecache")
 pp, fig = easypyplot.pdf.plot_setup(fig_name, fig_dims)
 ax = fig.gca()
 easypyplot.format.turn_off_box(ax)
@@ -42,7 +42,7 @@ ax.xaxis.set_ticks_position('none')
 # y axis
 ax.yaxis.grid(True)
 ax.set_ylabel('Normalized Slowdown')
-ax.set_ylim([0.5, 1])
+ax.set_ylim([0, 1])
 
 fig.tight_layout()
 easypyplot.format.resize_ax_box(ax, hratio=0.77)
@@ -66,7 +66,7 @@ for idx, case in enumerate(wl_list):
 #         ax.text(x, energy, energy_text, ha='center', va='top', fontsize=8, rotation=90)
     
 # Create legend
-ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.2), loc='upper left', ncol=4)
+ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.3), loc='upper left', ncol=2)
 
 fig.savefig(fig_name+'.pdf',format="pdf", bbox_inches = 'tight')
 # easypyplot.pdf.plot_teardown(pp)

@@ -7,20 +7,20 @@ low_wl = ['503', '508', '521', '523', '525', '526', '531', '544', 'Bellmanford',
 high_wl = ['502', '505', '519', '520', '549', '554', '557', 'PageRank', 'Canneal']
 mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 
-# stage cache access
+# only intra evict
 # prepare ordered workload list
-energy_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/3_sensitivity/stagecache.csv')
+energy_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/3_sensitivity/onlyintraevict.csv')
 energy_2darr = []
 wl_list = []
 for idx, workload in energy_csv.iterrows():
     wl_name = workload['Benchmark']
     if any(mix_id in wl_name for mix_id in mix_wl):
         wl_list.append(wl_name)
-        energy_2darr.append([workload['StageCacheHitrate'], workload['StageCacheMultiHitrate']])
+        energy_2darr.append([1, workload['Slowdown']])
 
-group_name = ['Stage Cache Hitrate', 'Stage Cache Multiple Hitrate']
+group_name = ['Baryon', 'Baryon w/o Block-level Replacement']
 fig_dims = (5, 2.5)
-fig_name = '{}'.format("graph_stagecache")
+fig_name = '{}'.format("graph_onlyintraevict")
 pp, fig = easypyplot.pdf.plot_setup(fig_name, fig_dims)
 ax = fig.gca()
 easypyplot.format.turn_off_box(ax)
@@ -42,7 +42,7 @@ ax.xaxis.set_ticks_position('none')
 # y axis
 ax.yaxis.grid(True)
 ax.set_ylabel('Normalized Slowdown')
-ax.set_ylim([0, 1])
+ax.set_ylim([0.5, 1])
 
 fig.tight_layout()
 easypyplot.format.resize_ax_box(ax, hratio=0.77)
