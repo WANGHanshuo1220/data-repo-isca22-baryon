@@ -9,7 +9,7 @@ mix_wl = ['mix1', 'mix2', 'mix3', 'mix4']
 
 # speedup
 # prepare ordered workload list
-speedup_csv = pd.read_csv('/scorpio/home/liyiwei/pom-research/plot-micro21/data-repo-micro21-baryon/1_performance/speedup.csv')
+speedup_csv = pd.read_csv('./1_performance/speedup.csv')
 speedup_2darr = []
 wl_list = []
 for idx, workload in speedup_csv.iterrows():
@@ -31,7 +31,7 @@ for idx, workload in speedup_csv.tail(2).iterrows():
     wl_list.append(workload['Benchmark'])
     speedup_2darr.append([workload['AllSlow Speedup'], workload['Hybrid2 Speedup'], workload['Baryon Speedup']])
 
-group_name = ['SlowMem', 'Hybrid2', 'Baryon']
+group_name = ['Slow-Only', 'Hybrid2', 'Baryon']
 fig_dims = (10, 2.5)
 fig_name = '{}'.format("graph_speedup")
 pp, fig = easypyplot.pdf.plot_setup(fig_name, fig_dims)
@@ -59,7 +59,7 @@ ax.xaxis.set_ticks_position('none')
 
 # y axis
 ax.yaxis.grid(True)
-ax.set_ylabel('Speedup over Hybrid2')
+ax.set_ylabel('Normalized Performance')
 ax.set_ylim([0, 1.25])
 
 fig.tight_layout()
@@ -69,7 +69,7 @@ easypyplot.format.resize_ax_box(ax, hratio=0.77)
 name_y_pos = -0.05
 for idx, case in enumerate(wl_list):
     x = ax.get_xticks()[idx]
-    ax.text(x, name_y_pos, case, ha='center', va='top', fontsize=9, rotation=90)
+    ax.text(x, name_y_pos, case, ha='right', va='top', fontsize=9, rotation=30)
 
 # speedup text
 # for group_id in range(len(wl_list)):
@@ -84,7 +84,6 @@ for idx, case in enumerate(wl_list):
 #         ax.text(x, speedup, speedup_text, ha='center', va='top', fontsize=8, rotation=90)
     
 # Create legend
-ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.2), loc='upper left', ncol=3)
+ax.legend(hdls, group_name, frameon=False, bbox_to_anchor=(0, 1.1), loc='upper left', ncol=3)
 
-fig.savefig(fig_name+'.pdf',format="pdf", bbox_inches = 'tight')
-# easypyplot.pdf.plot_teardown(pp)
+easypyplot.pdf.plot_teardown(pp)

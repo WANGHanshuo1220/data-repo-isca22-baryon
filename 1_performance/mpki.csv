@@ -34,5 +34,5 @@ Fluidaminate,0.0962,0.058,0.602910603
 Blackscholes,0.0003,0.0003,1
 Raytrace,0.0478,0.0431,0.90167364
 Canneal,4.4046,2.9508,0.669935976
-Memory Insensitive Group,,,0.712167643
-Memory Intensive Group,,,0.434176744
+Group L Geomean,,,0.712167643
+Group H Geomean,,,0.434176744
