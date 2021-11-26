@@ -1,38 +1,38 @@
-Benchmark,Hybrid2 Hitrate,Baryon Hitrate
-500.perlbench_r,1,1
-502.gcc_r,0.86,0.92
-503.bwaves_r,0.61,0.67
-505.mcf_r,0.87,0.95
-507.cactuBSSN_r,0.83,0.9
-508.namd_r,0.46,0.48
-510.parest_r,0.25,0.25
-511.povray_r,1,1
-519.lbm_r,0.9,0.95
-520.omnetpp_r,0.73,0.76
-521.wrf_r,0.91,0.92
-523.xalancbmk_r,0.99,0.99
-525.x264_r,0.66,0.65
-526.blender_r,0.85,0.86
-527.cam4_r,1,1
-531.deepsjeng_r,0.5,0.51
-538.imagick_r,1,1
-541.leela_r,1,1
-544.nab_r,0.69,0.69
-548.exchange2_r,1,1
-549.fotonik3d_r,0.74,0.84
-554.roms_r,0.91,0.92
-557.xz_r,0.7,0.77
-mix1,0.86,0.92
-mix2,0.86,0.92
-mix3,0.84,0.87
-mix4,0.82,0.87
-PageRank.ljournal,0.869069863,0.891088501
-Bellmanford.ljournal,0.478820881,0.482893554
-Freqmine,0.9678,0.9735
-Dedup,0.815,0.8399
-Fluidaminate,0.931,0.9576
-Blackscholes,0.9908,0.9909
-Raytrace,0.9135,0.9215
-Canneal,0.8173,0.8439
-Group L Geomean,0.74,0.75
-Group H Geomean,0.82,0.87
+Benchmark,SILC-FM,Baryon (Low Assoc),Hybrid2,Baryon (High Assoc)
+500.perlbench_r,1.00,0.82,1.00,1.00
+502.gcc_r,0.41,0.71,0.74,0.79
+503.bwaves_r,0.33,0.87,0.86,0.96
+505.mcf_r,0.70,0.60,0.67,0.72
+507.cactuBSSN_r,0.31,0.64,0.79,0.80
+508.namd_r,0.76,0.75,0.90,0.92
+510.parest_r,1.00,0.94,0.89,0.91
+511.povray_r,,,,
+519.lbm_r,0.13,0.55,0.86,0.86
+520.omnetpp_r,0.53,0.61,0.48,0.53
+521.wrf_r,0.76,0.74,0.90,0.91
+523.xalancbmk_r,0.98,0.82,0.93,0.96
+525.x264_r,0.64,0.60,0.87,0.88
+526.blender_r,0.37,0.62,0.57,0.61
+527.cam4_r,,,,
+531.deepsjeng_r,0.38,0.45,0.28,0.38
+538.imagick_r,,,,
+541.leela_r,,,,
+544.nab_r,0.75,0.80,0.87,0.89
+548.exchange2_r,,,,
+549.fotonik3d_r,0.07,0.80,0.83,0.97
+554.roms_r,0.70,0.70,0.74,0.76
+557.xz_r,0.64,0.55,0.79,0.88
+mix1,0.51,0.60,0.78,0.81
+mix2,0.45,0.60,0.82,0.83
+mix3,0.40,0.63,0.81,0.86
+mix4,0.37,0.60,0.80,0.82
+PageRank.ljournal,,,,
+Bellmanford.ljournal,,,,
+Freqmine,,,,
+Dedup,,,,
+Fluidaminate,,,,
+Blackscholes,,,,
+Raytrace,,,,
+Canneal,,,,
+Group L Geomean,,,,
+Group H Geomean,,,,
