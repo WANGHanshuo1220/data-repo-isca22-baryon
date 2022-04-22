@@ -1,4 +1,4 @@
-Benchmark,Basic,YACC,FPCache,Baryon
+Benchmark,Basic,YACC,Footprint Cache,Baryon
 502.gcc_r,1.175074,1,1.175074,1.586447
 503.bwaves_r,0.484116,1,0.883878,1.170923
 505.mcf_r,0.759671,1,0.957691,1.140965
