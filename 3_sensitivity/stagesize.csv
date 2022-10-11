@@ -1,18 +1,19 @@
-Benchmark,,32MB Hit Rate,64MB Hit Rate,128MB Hit Rate,8MB Performance,16MB Performance,32MB Performance,64MB Performance,128MB Performance,32MB Layout,64MB Layout,128MB Layout
-500.perlbench_r,,,,,,,,,,,,
-502.gcc_r,,,,,,,,,,,,
-503.bwaves_r,,,,,,,,,,,,
-505.mcf_r,,,,,"0.97 ","0.97 ","0.98 ","1.00 ","1.02 ",,,
-507.cactuBSSN_r,,,,,,,,,,,,
-519.lbm_r,,,,,,,,,,,,
-520.omnetpp_r,,,,,"0.76 ","0.80 ","0.83 ","1.00 ","1.06 ",,,
-549.fotonik3d_r,,,,,,,,,,,,
-554.roms_r,,,,,,,,,,,,
-557.xz_r,,,,,,,,,,,,
-mix1,,,,,,,,,,,,
-mix2,,,,,,,,,,,,
-mix3,,,,,,,,,,,,
-mix4,,,,,,,,,,,,
-pr.twitter,,,,,"0.87 ","0.90 ","0.94 ","1.00 ","1.01 ",,,
-resnet50,,,,,"1.00 ","1.00 ","1.00 ","1.00 ","1.00 ",,,
-ycsb.a,,,,,"0.53 ","0.78 ","0.84 ","1.00 ","1.03 ",,,
+Benchmark,No Stage Area Performance,8MB Performance,16MB Performance,32MB Performance,64MB Performance,128MB Performance,Full Performance
+500.perlbench_r,,,,,,,
+502.gcc_r,,,,,,,
+503.bwaves_r,,,,,,,
+505.mcf_r,"0.6759 ","0.97 ","0.97 ","0.98 ","1.00 ","1.02 ","0.9000 "
+507.cactuBSSN_r,,,,,,,
+519.lbm_r,,,,,,,
+520.omnetpp_r,"0.5200 ","0.76 ","0.80 ","0.83 ","1.00 ","1.06 ","0.9400 "
+549.fotonik3d_r,,,,,,,
+554.roms_r,,,,,,,
+557.xz_r,,,,,,,
+mix1,,,,,,,
+mix2,,,,,,,
+mix3,,,,,,,
+mix4,,,,,,,
+pr.twitter,"0.5830 ","0.87 ","0.90 ","0.94 ","1.00 ","1.01 ","0.6515 "
+resnet50,"0.8996 ","1.00 ","1.00 ","1.00 ","1.00 ","1.00 ","0.9600 "
+ycsb.a,,"0.53 ","0.78 ","0.84 ","1.00 ","1.03 ",
+Geomean,"0.6554 ","0.8972 ","0.9221 ","0.9423 ","1.0000 ","1.0624 ","0.9571 "
